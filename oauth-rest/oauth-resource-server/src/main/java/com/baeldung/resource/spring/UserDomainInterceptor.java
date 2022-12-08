@@ -36,11 +36,11 @@ public class UserDomainInterceptor implements HandlerInterceptor {
 
 		final String userName = (String) userInfoController.getUserInfo(jwt).get("user_name");
 
-		if (userName.endsWith(ALLOWED_DOMAIN)) {
-			return true;
-		} else {
+		if (Boolean.FALSE.equals(userName.endsWith(ALLOWED_DOMAIN))) {
 			log.error("Invalid user domain! Allowed domain is {}", ALLOWED_DOMAIN);
 			return false;
-		}
+		} 
+
+		return true;
 	}
 }
